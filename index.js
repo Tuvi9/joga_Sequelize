@@ -18,9 +18,9 @@ sequelize.authenticate().then(() => {
         console.error('Unable to connect to the database:', error);
     });
 
-app.get('/', (req, res) => {
-    res.json({ message: "Welcome to sequelize application." });
-})
+const articleRouter = require('./routes/article');
+app.use('/', articleRouter);
+app.use('/article', articleRouter);
 
 // Set port, listen for requests
 app.listen(3000, () => {
