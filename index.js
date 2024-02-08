@@ -19,10 +19,12 @@ sequelize.authenticate().then(() => {
     });
 
 const articleRouter = require('./routes/article');
+//! GET ALL ARTICLES
 app.use('/', articleRouter);
+//! GET ARTICLE BY SLUG
 app.use('/article', articleRouter);
 
 // Set port, listen for requests
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log("Server is running on https://localhost:3000.");
 })
