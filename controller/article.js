@@ -1,6 +1,5 @@
 const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('mysql://root:qwerty@localhost:3306/joga_sequelizer');
-const Article = require('../models/article')(sequelize, Sequelize.DataTypes);
 //! All models are now stored in the models object
 const models = require('../models');
 
@@ -22,7 +21,7 @@ const getArticleBySlug = (req, res) => {
         where: {
             slug: req.params.slug
         },
-        //! Include the Author with their own articles
+        //! Include the Author of the article
         include: [{
             model: models.Author,
         }],

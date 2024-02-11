@@ -24,7 +24,11 @@ app.use('/', articleRouter);
 //! GET ARTICLE BY SLUG
 app.use('/article', articleRouter);
 
+const authorRouter = require('./routes/author');
+//! GET AUTHOR BY ID
+app.use('/author', authorRouter);
+
 // Set port, listen for requests
-app.listen(3001, () => {
+app.listen(3000, () => {
     console.log("Server is running on https://localhost:3000.");
 })
