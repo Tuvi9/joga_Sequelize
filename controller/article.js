@@ -21,12 +21,12 @@ const getArticleBySlug = (req, res) => {
         where: {
             slug: req.params.slug
         },
-        //! Include the Author of the article
+        //* Include the Author of the article
         include: [
         {
             model: models.Author,
         },
-        //! Include the Tags of the article through the ArticleTags junction table
+        //* Include the Tags of the article through the ArticleTags junction table
         {
             model: models.Tags,
             through: {

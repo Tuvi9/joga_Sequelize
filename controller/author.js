@@ -6,7 +6,7 @@ const models = require('../models');
 //! GET AUTHOR BY ID
 const getAuthorById = (req, res) => {
     models.Author.findByPk(req.params.id, {
-        //! Include the Author with their own articles
+        //* Include the Author with their own articles
         include: [{
             model: models.Article,
         }],

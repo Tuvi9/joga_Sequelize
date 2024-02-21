@@ -1,6 +1,9 @@
 const express = require('express');
 const { Sequelize } = require('sequelize');
 const app = express();
+const articleRouter = require('./routes/article');
+const authorRouter = require('./routes/author');
+
 
 // Parse requests of content-type - application/json
 app.use(express.json());
@@ -18,15 +21,22 @@ sequelize.authenticate().then(() => {
         console.error('Unable to connect to the database:', error);
     });
 
-const articleRouter = require('./routes/article');
+//! Log the HTTP method of each request
+app.use((req, res, next) => {
+    console.log(`HTTP Method: ${req.method}`);
+    next();
+});
+
 //! GET ALL ARTICLES
 app.use('/', articleRouter);
 //! GET ARTICLE BY SLUG
 app.use('/article', articleRouter);
-
-const authorRouter = require('./routes/author');
 //! GET AUTHOR BY ID
 app.use('/author', authorRouter);
+//! CREATE NEW ARTICLE
+app.use('/admin/article', articleRouter);
+//! UPDATE ARTICLE
+app.use('/admin/article/update', articleRouter);
 
 // Set port, listen for requests
 app.listen(3000, () => {
