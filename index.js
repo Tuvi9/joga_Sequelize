@@ -27,16 +27,23 @@ app.use((req, res, next) => {
     next();
 });
 
-//! GET ALL ARTICLES
+//! ARTICLES
+//* GET ALL ARTICLES
 app.use('/', articleRouter);
-//! GET ARTICLE BY SLUG
+
+//* GET ARTICLE BY SLUG
 app.use('/article', articleRouter);
-//! GET AUTHOR BY ID
-app.use('/author', authorRouter);
-//! CREATE NEW ARTICLE
+
+//* CREATE NEW ARTICLE
 app.use('/admin/article', articleRouter);
-//! UPDATE ARTICLE
+
+//* UPDATE ARTICLE
 app.use('/admin/article/update', articleRouter);
+
+//! AUTHORS
+//* GET AUTHOR BY ID
+app.use('/author', authorRouter);
+
 
 // Set port, listen for requests
 app.listen(3000, () => {

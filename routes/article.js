@@ -10,6 +10,8 @@ router.get('/:slug', articleController.getArticleBySlug);
 //! CREATE NEW ARTICLE
 router.post('/admin/article/create', articleAdminController.createArticle)
 //! UPDATE ARTICLE
-router.post('/admin/article/update/:id', articleAdminController.updateArticle)
+router.patch('/admin/article/update/:id', articleAdminController.updateArticle)
+//! DELETE ARTICLE
+router.delete('/admin/article/delete/:id', articleAdminController.deleteArticle)
 
 module.exports = router;

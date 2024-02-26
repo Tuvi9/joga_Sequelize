@@ -12,7 +12,8 @@ const createArticle = (req, res) => {
     let body = req.body.body;
 
     //* Create a new article
-    const newArticle = models.Article.create({
+    const newArticle = 
+    models.Article.create({
         name: name,
         slug: slug,
         image: image,
@@ -29,6 +30,7 @@ const createArticle = (req, res) => {
     });
 };
 
+//! UPDATE ARTICLE
 const updateArticle = (req, res) => {
     //! Get the data from the request body
         let name = req.body.name;
@@ -37,7 +39,8 @@ const updateArticle = (req, res) => {
         let body = req.body.body;
     
         //* Update the article
-        const updatedArticle = models.Article.update({
+        const updatedArticle = 
+        models.Article.update({
             name: name,
             slug: slug,
             image: image,
@@ -58,7 +61,24 @@ const updateArticle = (req, res) => {
             res.status(500).send({ error: message });
         });
 };
+
+//! DELETE ARTICLE
+const deleteArticle = (req, res) => {
+    models.Article.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(article => {
+        console.log(article);
+        return res.status(200).json({ message: 'Article deleted successfully' });
+    }) .catch (error => {
+        console.log(error);
+    })
+};
+
 module.exports = {
     createArticle,
-    updateArticle
-}
+    updateArticle,
+    deleteArticle
+};
